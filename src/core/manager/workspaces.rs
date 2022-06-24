@@ -218,6 +218,20 @@ impl Workspaces {
         });
     }
 
+    pub fn try_set_layout(&mut self, wix: usize, layout_sym: &str) -> Result<()> {
+        let mut ret = false;
+
+        self.inner.apply_to(&Selector::Index(wix), |ws| {
+            ret = ws.try_set_layout(layout_sym).is_some()
+        });
+
+        if ret {
+            Ok(())
+        } else {
+            Err(perror!("Unknown layout symbol: {}", layout_sym))
+        }
+    }
+
     pub fn update_max_main(&mut self, wix: usize, change: Change) {
         self.inner.apply_to(&Selector::Index(wix), |ws| {
             ws.update_max_main(change);

@@ -891,6 +891,16 @@ impl<X: XConn> WindowManager<X> {
         self.apply_layout(wix)
     }
 
+    /// Try to set [layout][1] based on it's layout symbol for the active [Workspace]
+    ///
+    /// [1]: crate::core::layout::Layout
+    pub fn try_set_layout(&mut self, symbol: &str) -> Result<()> {
+        let wix = self.screens.active_ws_index();
+        self.workspaces.try_set_layout(wix, symbol)?;
+        self.run_hook(HookName::LayoutChange(wix));
+        self.apply_layout(wix)
+    }
+
     /// Increase or decrease the number of clients in the main area by 1.
     ///
     /// The change is applied to the active [layout][1] on the [Workspace] that currently holds
