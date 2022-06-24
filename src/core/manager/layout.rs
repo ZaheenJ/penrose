@@ -37,8 +37,8 @@ where
 
     let Config {
         show_bar,
-        border_px,
-        gap_px,
+        mut border_px,
+        mut gap_px,
         ..
     } = state.config;
 
@@ -49,6 +49,15 @@ where
             .clients
             .clients_for_ids(&state.workspaces[wix].client_ids()),
     )?;
+
+    if state.workspaces.get_workspace(wix)?.len() == 1 {
+        if lc.smart_borders {
+            border_px = 0;
+        }
+        if lc.smart_gaps {
+            gap_px = 0;
+        }
+    }
 
     for (id, region) in aa.actions {
         trace!(id, ?region, "positioning client");

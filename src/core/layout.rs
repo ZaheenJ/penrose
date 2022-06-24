@@ -73,6 +73,10 @@ pub struct LayoutConf {
     pub floating: bool,
     /// Should gaps be dropped regardless of config
     pub gapless: bool,
+    /// Should gaps be dropped if there is only one client
+    pub smart_gaps: bool,
+    /// Should borders be dropped if there is only one client
+    pub smart_borders: bool,
     /// Should this layout be triggered by window focus as well as add/remove client
     pub follow_focus: bool,
     /// Should cycling clients wrap at the first and last client?
@@ -84,6 +88,8 @@ impl Default for LayoutConf {
         Self {
             floating: false,
             gapless: false,
+            smart_gaps: false,
+            smart_borders: false,
             follow_focus: false,
             allow_wrapping: true,
         }
@@ -175,6 +181,8 @@ impl Layout {
             symbol: symbol.into(),
             conf: LayoutConf {
                 floating: true,
+                smart_gaps: false,
+                smart_borders: false,
                 gapless: false,
                 follow_focus: false,
                 allow_wrapping: true,
