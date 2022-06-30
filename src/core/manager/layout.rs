@@ -3,7 +3,7 @@ use crate::{
         config::Config,
         hooks::HookName,
         manager::{event::EventAction, state::WmState, util::pad_region},
-        xconnection::{XClientConfig, XClientHandler, Xid},
+        xconnection::{XClientConfig, XClientHandler},
     },
     Result,
 };
