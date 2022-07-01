@@ -278,7 +278,7 @@ impl Clients {
         for (id, region) in actions.actions {
             trace!(id, ?region, "positioning client");
             if let Some(region) = region {
-                let reg = pad_region(&region, lc.gapless, gap_px, border_px);
+                let reg = pad_region(&region, lc.gapless, gap_px, lc.borderless, border_px);
                 conn.position_client(id, reg, border_px, false)?;
                 self.map_if_needed(id, conn)?;
             } else {
