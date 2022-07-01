@@ -71,6 +71,8 @@ use std::{cmp, fmt};
 pub struct LayoutConf {
     /// If true, this layout function will not be called to produce resize actions
     pub floating: bool,
+    /// Should borders be dropped regardless of config
+    pub borderless: bool,
     /// Should gaps be dropped regardless of config
     pub gapless: bool,
     /// Should gaps be dropped if there is only one client
@@ -87,6 +89,7 @@ impl Default for LayoutConf {
     fn default() -> Self {
         Self {
             floating: false,
+            borderless: false,
             gapless: false,
             smart_gaps: false,
             smart_borders: false,
@@ -181,9 +184,10 @@ impl Layout {
             symbol: symbol.into(),
             conf: LayoutConf {
                 floating: true,
+                borderless: false,
+                gapless: false,
                 smart_gaps: false,
                 smart_borders: false,
-                gapless: false,
                 follow_focus: false,
                 allow_wrapping: true,
             },

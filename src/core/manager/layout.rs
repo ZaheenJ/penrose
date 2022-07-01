@@ -67,7 +67,7 @@ where
             if aa.floating.contains(&id) {
                 border_px = float_border_px;
             };
-            let reg = pad_region(&region, lc.gapless, gap_px, border_px);
+            let reg = pad_region(&region, lc.gapless, gap_px, lc.borderless, border_px);
             conn.position_client(id, reg, border_px, false)?;
             state.clients.map_if_needed(id, conn)?;
         } else {
