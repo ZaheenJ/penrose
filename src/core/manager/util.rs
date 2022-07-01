@@ -12,16 +12,9 @@ use crate::{
     PenroseError,
 };
 
-pub(super) fn pad_region(
-    region: &Region,
-    gapless: bool,
-    gap_px: u32,
-    borderless: bool,
-    border_px: u32,
-) -> Region {
+pub(super) fn pad_region(region: &Region, gapless: bool, gap_px: u32, border_px: u32) -> Region {
     let gpx = if gapless { 0 } else { gap_px };
-    let bpx = if borderless { 0 } else { border_px };
-    let padding = 2 * (bpx + gpx);
+    let padding = 2 * (border_px + gpx);
     let (x, y, w, h) = region.values();
 
     // Check that the resulting size would not be zero or negative
