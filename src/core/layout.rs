@@ -181,9 +181,9 @@ impl Layout {
             symbol: symbol.into(),
             conf: LayoutConf {
                 floating: true,
+                gapless: false,
                 smart_gaps: false,
                 smart_borders: false,
-                gapless: false,
                 follow_focus: false,
                 allow_wrapping: true,
             },
